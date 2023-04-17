@@ -25,9 +25,9 @@ function NavBar() {
                 </a>
               </li>
               <li>
-                <div className="nav-item nav-link">
-                  <i className="fas fa-book-open fa-lg"></i>&nbsp; Your Library
-                </div>
+                <a className="nav-item nav-link text-white" href="index.html">
+                  <i className="fas fa-book-open fa-lg "></i>&nbsp; Your Library
+                </a>
               </li>
               <li>
                 <div className="input-group mt-3">
@@ -68,3 +68,5 @@ function NavBar() {
     </nav>
   );
 }
+
+export default NavBar;
