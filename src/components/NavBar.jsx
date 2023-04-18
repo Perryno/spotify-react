@@ -1,4 +1,24 @@
-function NavBar() {
+import React, { useState, useEffect } from "react";
+
+function NavBar(props) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    if (searchTerm !== "") {
+      fetch(`https://api.example.com/search?query=${searchTerm}`)
+        .then((response) => response.json())
+        .then((data) => {
+          props.setData(data);
+          props.addSongs(data.songs);
+        })
+        .catch((error) => console.error(error));
+    }
+  }, [searchTerm]);
+
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
     <nav className="navbar navbar-expand-md navbar-white bg-navbar fixed-left justify-content-between" id="sidebar">
       <div className="nav-container">
@@ -33,6 +53,8 @@ function NavBar() {
                 <div className="input-group mt-3">
                   <input
                     type="text"
+                    value={searchTerm}
+                    onChange={handleInputChange}
                     className="form-control mb-2"
                     id="searchField"
                     placeholder="Search"
@@ -44,7 +66,7 @@ function NavBar() {
                       className="btn btn-outline-secondary btn-sm"
                       type="button"
                       id="button-addon1"
-                      onClick="search()"
+                      onClick={handleInputChange()}
                     >
                       GO
                     </button>
