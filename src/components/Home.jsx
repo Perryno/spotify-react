@@ -1,4 +1,15 @@
+import React, { useState, useEffect } from "react";
+
 function Home() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=thasup")
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <div>
       <div className="container-fluid">

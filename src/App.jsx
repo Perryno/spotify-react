@@ -2,15 +2,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Home from "./components/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BotBar from "./components/BotBar";
+import AlbumPage from "./components/AlbumPage";
+
 import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <div className="App">
-      <Home />
-      <NavBar />
-      <BotBar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/albums/:id" element={<AlbumPage />} />
+        </Routes>
+
+        <NavBar />
+      </BrowserRouter>
     </div>
   );
 }
